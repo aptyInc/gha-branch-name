@@ -1,0 +1,8 @@
+name: 'gha-branch-name'
+description: 'Fetches Branch Name'
+outputs:
+  branch_name:
+    description: 'Branch Name'
+runs:
+  using: 'node12'
+  main: 'index.js'
