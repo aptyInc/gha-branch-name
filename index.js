@@ -3,6 +3,8 @@ const core = require('@actions/core');
 try {
   let branchName = '';
   let shouldDeploy = false;
+  let ProdDeploy = false;
+  let NonProdDeploy = false;
   const eventName = process.env.GITHUB_EVENT_NAME;
 
   // Fetch Branch Name
