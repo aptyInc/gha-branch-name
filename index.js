@@ -19,13 +19,26 @@ try {
   } else {
     core.setOutput('branch_name', branchName);
   }
-
+ 
   // Calculate should_deploy and set as output
   const deployableBranches = ['development', 'qa', 'staging', 'production', 'labs'];
   if(deployableBranches.includes(branchName)) {
     shouldDeploy = true;
   }
   core.setOutput('should_deploy', shouldDeploy);
+
+  // Check if it's Staging or Productions or labs
+  const ProdBranches = ['staging', 'production', 'labs'];
+  if(ProdBranches.includes(branchName)) {
+    ProdDeploy = true;
+  }
+  core.setOutput('prod_deploy', ProdDeploy);
+  // Check if it's Dev or QA
+  const NonProdBranches = ['development', 'qa'];
+  if(NonProdBranches.includes(branchName)) {
+    NonProdDeploy = true;
+  }
+  core.setOutput('non_prod_deploy', NonProdDeploy);
 } catch (error) {
   core.setFailed(error.message);
 }
