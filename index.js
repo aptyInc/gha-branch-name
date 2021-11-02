@@ -15,7 +15,7 @@ try {
   }
 
   // Validate and set branch Name
-  const validBranchRegex = /(^(feature|bugfix|hotfix|onprem)\/(LSP|CB|AQRE|LP|ASE)-[0-9]{1,5}\/[0-9a-zA-Z_-]+$)|(^(development|staging|production|qa|labs)$)/;
+  const validBranchRegex = /(^(feature|bugfix|hotfix|onprem)\/(LSP|CB|AQRE|LP|ASE|SAP)-[0-9]{1,5}\/[0-9a-zA-Z_-]+$)|(^(development|staging|production|qa|labs)$)/;
   if (!validBranchRegex.test(branchName)) {
     core.setFailed(`Branch Name should be in the regex format ${validBranchRegex}`);
   } else {
