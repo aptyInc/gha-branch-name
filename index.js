@@ -10,7 +10,7 @@ try {
   // Fetch Branch Name
   if (eventName === 'pull_request') {
     branchName = process.env.GITHUB_HEAD_REF;
-  } else if (eventName === 'push') {
+  } else if (eventName === 'push' || eventName === 'workflow_run') {
     branchName = process.env.GITHUB_REF.replace('refs/heads/', '');
   }
 
