@@ -15,7 +15,7 @@ try {
   }
 
   // Validate and set branch Name
-  const validBranchRegex = /(^(revert)-[0-9]{1,5}-(feature|bugfix|hotfix|onprem|test)\/(LSP|CB|AQRE|LP|ASE|CED|SAP|FR)-[0-9]{1,5}\/[0-9a-zA-Z_-]+$)|(^(feature|bugfix|hotfix|onprem|test)\/(LSP|CB|AQRE|LP|ASE|CED|SAP|FR)-[0-9]{1,5}\/[0-9a-zA-Z_-]+$)|(^(development|staging|production|qa|qa1|labs|onprem|nightly)$)|((rc)-\d*.\d*.\d*)/;
+  const validBranchRegex = /(^(revert)-[0-9]{1,5}-(feature|bugfix|hotfix|onprem|test)\/(LSP|CB|AQRE|LP|ASE|CED|SAP|FR)-[0-9]{1,5}\/[0-9a-zA-Z_-]+$)|(^(feature|bugfix|hotfix|onprem|test)\/(LSP|CB|AQRE|LP|ASE|CED|SAP|FR)-[0-9]{1,5}\/[0-9a-zA-Z_-]+$)|(^(development|staging|production|qa|qa1|hotfix|labs|onprem|nightly)$)|((rc)-\d*.\d*.\d*)/;
   if (!validBranchRegex.test(branchName)) {
     core.setFailed(`Branch Name should be in the regex format ${validBranchRegex}`);
   } else {
@@ -23,7 +23,7 @@ try {
   }
  
   // Calculate should_deploy and set as output
-  const deployableBranches = ['development', 'qa', 'staging', 'production', 'labs', 'qa1'];
+  const deployableBranches = ['development', 'qa', 'staging', 'production', 'labs', 'qa1', 'hotfix'];
   if(deployableBranches.includes(branchName)) {
     shouldDeploy = true;
   }
@@ -36,7 +36,7 @@ try {
   }
   core.setOutput('prod_deploy', ProdDeploy);
   // Check if it's Dev or QA
-  const NonProdBranches = ['development', 'qa', 'qa1'];
+  const NonProdBranches = ['development', 'qa', 'qa1', 'hotfix'];
   if(NonProdBranches.includes(branchName)) {
     NonProdDeploy = true;
   }
